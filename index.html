@@ -3,20 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>คลังวิดีโอ - Cinema Slider</title>
+<title>คลังวิดีโอ - RM & CG Connect</title>
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;800&family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
 <style>
   :root {
-    --ci-green: #007947; --ci-red: #F40000;
-    --bg-white: #ffffff; --text-dark: #1e293b;
+    --ci-green: #007947; /* 80% Main Color */
+    --ci-red: #F40000;   /* 20% Accent Color */
+    --bg-white: #ffffff;
   }
 
   body {
     font-family: 'Figtree', 'Kanit', sans-serif;
     background-color: var(--bg-white);
     margin: 0; padding: 40px 0;
+    /* พื้นหลัง Gradient จางๆ สไตล์ Futuristic */
+    background-image: radial-gradient(circle at top right, rgba(0, 121, 71, 0.03), transparent 40%);
   }
 
   .section-header { text-align: center; margin-bottom: 40px; }
@@ -27,30 +30,30 @@
   .swiper { width: 100%; padding-top: 50px; padding-bottom: 50px; }
 
   .swiper-slide {
-    background-position: center; background-size: cover;
-    width: 60%; /* ขนาดวิดีโอหลัก */
+    background: #000;
+    width: 65%; /* ขนาดวิดีโอหลัก */
     aspect-ratio: 16/9;
     border-radius: 24px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    transition: all 0.5s ease;
-    opacity: 0.4; /* ตัวข้างๆ ให้จางลง */
-    transform: scale(0.85); /* ตัวข้างๆ ให้เล็กลง */
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0.3; 
+    transform: scale(0.8);
   }
 
-  /* ตัวที่อยู่ตรงกลางให้ชัดและใหญ่ขึ้น */
+  /* วิดีโอตรงกลางที่กำลัง Active */
   .swiper-slide-active {
     opacity: 1;
     transform: scale(1);
-    box-shadow: 0 25px 50px -12px rgba(0, 121, 71, 0.25);
+    box-shadow: 0 25px 50px -12px rgba(0, 121, 71, 0.2);
   }
 
-  .video-container { width: 100%; height: 100%; position: relative; background: #000; }
+  .video-container { width: 100%; height: 100%; position: relative; }
   .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
-  /* Pagination สไตล์พรีเมียม */
+  /* Pagination */
   .swiper-pagination-bullet { background: var(--ci-green); opacity: 0.2; }
-  .swiper-pagination-bullet-active { background: var(--ci-green); opacity: 1; width: 30px; border-radius: 10px; transition: 0.3s; }
+  .swiper-pagination-bullet-active { background: var(--ci-green); opacity: 1; width: 25px; border-radius: 10px; }
 
   @media (max-width: 768px) { .swiper-slide { width: 85%; } }
 </style>
@@ -58,7 +61,7 @@
 <body>
 
 <div class="section-header">
-  <h1 class="main-title">คลังวิดีโอ</h1>
+  <h1 class="main-title">คลังวิดีโอความรู้</h1>
   <div class="title-bar"></div>
 </div>
 
@@ -73,13 +76,13 @@
 
     <div class="swiper-slide">
       <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/TF7Xgk_2wWM" allowfullscreen></iframe>
       </div>
     </div>
 
     <div class="swiper-slide">
       <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/f9e_8p4fL7c" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/5AzxMjt1sAE" allowfullscreen></iframe>
       </div>
     </div>
 
@@ -94,12 +97,12 @@
     grabCursor: true,
     centeredSlides: true,
     slidesPerView: "auto",
-    loop: true, /* ให้เลื่อนวนลูปได้ */
+    loop: true,
     coverflowEffect: {
       rotate: 0,
       stretch: 0,
-      depth: 100,
-      modifier: 2,
+      depth: 150,
+      modifier: 1,
       slideShadows: false,
     },
     pagination: {
