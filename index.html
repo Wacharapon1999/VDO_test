@@ -3,60 +3,64 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>คลังวิดีโอ - Fixed Slider</title>
+<title>คลังวิดีโอ - Compact Version</title>
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;800&family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
 <style>
-  :root { --ci-green: #007947; --ci-red: #F40000; --bg-white: #ffffff; }
+  :root { 
+    --ci-green: #007947; 
+    --ci-red: #F40000; 
+    --bg-white: #ffffff; 
+  }
 
   body {
     font-family: 'Figtree', 'Kanit', sans-serif;
-    background-color: var(--bg-white);
-    margin: 0; padding: 40px 0;
+    background-color: transparent; /* ปรับเป็นโปร่งใสเพื่อให้เนียนไปกับหน้าหลัก */
+    margin: 0; padding: 20px 0;
   }
 
-  .section-header { text-align: center; margin-bottom: 40px; }
-  .main-title { font-size: 32px; font-weight: 800; color: var(--ci-green); margin: 0; }
-  .title-bar { width: 60px; height: 4px; background: var(--ci-red); margin: 12px auto; border-radius: 10px; }
+  .section-header { text-align: center; margin-bottom: 25px; }
+  .main-title { font-size: 24px; font-weight: 800; color: var(--ci-green); margin: 0; }
+  .title-bar { width: 45px; height: 3px; background: var(--ci-red); margin: 8px auto; border-radius: 10px; }
 
-  /* --- Swiper Container --- */
-  .swiper { width: 100%; padding-top: 50px; padding-bottom: 80px; }
+  /* --- Swiper Container (ลดขนาดลง) --- */
+  .swiper { width: 100%; padding-top: 20px; padding-bottom: 50px; }
 
   .swiper-slide {
     background: #000;
-    width: 65%;
+    width: 55%; /* ลดขนาดความกว้างสไลด์ลงเพื่อให้ดู Compact */
     aspect-ratio: 16/9;
-    border-radius: 24px;
+    border-radius: 18px; /* ลดความโค้งมนเล็กน้อยให้เข้ากับขนาดที่เล็กลง */
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
     transition: all 0.5s ease;
-    opacity: 0.2; 
+    opacity: 0.15; 
     transform: scale(0.8);
-    pointer-events: none; /* ป้องกันสไลด์ข้างๆ มาบังการคลิก */
+    pointer-events: none;
   }
 
-  /* สไลด์ที่อยู่ตรงกลางจะคลิกได้และชัดเจน */
+  /* สไลด์ที่อยู่ตรงกลาง */
   .swiper-slide-active {
     opacity: 1;
     transform: scale(1);
-    box-shadow: 0 25px 50px -12px rgba(0, 121, 71, 0.2);
+    box-shadow: 0 15px 35px -10px rgba(0, 121, 71, 0.2);
     z-index: 10;
-    pointer-events: auto; /* เปิดให้คลิกได้เฉพาะตัวที่อยู่ตรงกลาง */
+    pointer-events: auto;
   }
 
   .video-container { width: 100%; height: 100%; position: relative; }
   .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
-  .swiper-pagination-bullet-active { background: var(--ci-green); width: 25px; border-radius: 10px; }
+  .swiper-pagination-bullet-active { background: var(--ci-green); width: 20px; border-radius: 10px; }
 
-  @media (max-width: 768px) { .swiper-slide { width: 85%; } }
+  @media (max-width: 768px) { .swiper-slide { width: 80%; } }
 </style>
 </head>
 <body>
 
 <div class="section-header">
-  <h1 class="main-title">คลังวิดีโอความรู้</h1>
+  <h1 class="main-title">วิดีโอแนะนำ</h1>
   <div class="title-bar"></div>
 </div>
 
@@ -90,11 +94,11 @@
     grabCursor: true,
     centeredSlides: true,
     slidesPerView: "auto",
-    loop: false, // ปิด Loop เพื่อแก้บัค iframe SharePoint ค้าง
+    loop: false, // ปิด Loop เพื่อความเสถียรของ SharePoint
     coverflowEffect: {
       rotate: 0,
       stretch: 0,
-      depth: 150,
+      depth: 100,
       modifier: 1,
       slideShadows: false,
     },
