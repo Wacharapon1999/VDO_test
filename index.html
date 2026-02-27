@@ -3,57 +3,52 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>คลังวิดีโอ - RM & CG Connect</title>
+<title>คลังวิดีโอ - Fixed Slider</title>
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;800&family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
 <style>
-  :root {
-    --ci-green: #007947; /* 80% Main Color */
-    --ci-red: #F40000;   /* 20% Accent Color */
-    --bg-white: #ffffff;
-  }
+  :root { --ci-green: #007947; --ci-red: #F40000; --bg-white: #ffffff; }
 
   body {
     font-family: 'Figtree', 'Kanit', sans-serif;
     background-color: var(--bg-white);
     margin: 0; padding: 40px 0;
-    /* พื้นหลัง Gradient จางๆ สไตล์ Futuristic */
-    background-image: radial-gradient(circle at top right, rgba(0, 121, 71, 0.03), transparent 40%);
   }
 
   .section-header { text-align: center; margin-bottom: 40px; }
   .main-title { font-size: 32px; font-weight: 800; color: var(--ci-green); margin: 0; }
   .title-bar { width: 60px; height: 4px; background: var(--ci-red); margin: 12px auto; border-radius: 10px; }
 
-  /* --- Swiper Styles (Center Focused) --- */
-  .swiper { width: 100%; padding-top: 50px; padding-bottom: 50px; }
+  /* --- Swiper Container --- */
+  .swiper { width: 100%; padding-top: 50px; padding-bottom: 80px; }
 
   .swiper-slide {
     background: #000;
-    width: 65%; /* ขนาดวิดีโอหลัก */
+    width: 65%;
     aspect-ratio: 16/9;
     border-radius: 24px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    opacity: 0.3; 
+    transition: all 0.5s ease;
+    opacity: 0.2; 
     transform: scale(0.8);
+    pointer-events: none; /* ป้องกันสไลด์ข้างๆ มาบังการคลิก */
   }
 
-  /* วิดีโอตรงกลางที่กำลัง Active */
+  /* สไลด์ที่อยู่ตรงกลางจะคลิกได้และชัดเจน */
   .swiper-slide-active {
     opacity: 1;
     transform: scale(1);
     box-shadow: 0 25px 50px -12px rgba(0, 121, 71, 0.2);
+    z-index: 10;
+    pointer-events: auto; /* เปิดให้คลิกได้เฉพาะตัวที่อยู่ตรงกลาง */
   }
 
   .video-container { width: 100%; height: 100%; position: relative; }
   .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
-  /* Pagination */
-  .swiper-pagination-bullet { background: var(--ci-green); opacity: 0.2; }
-  .swiper-pagination-bullet-active { background: var(--ci-green); opacity: 1; width: 25px; border-radius: 10px; }
+  .swiper-pagination-bullet-active { background: var(--ci-green); width: 25px; border-radius: 10px; }
 
   @media (max-width: 768px) { .swiper-slide { width: 85%; } }
 </style>
@@ -67,7 +62,6 @@
 
 <div class="swiper mySwiper">
   <div class="swiper-wrapper">
-    
     <div class="swiper-slide">
       <div class="video-container">
         <iframe src="https://haadthipo365.sharepoint.com/sites/RMCGConnect/_layouts/15/embed.aspx?UniqueId=aae2c619-9856-4b5f-aae7-c6dbabf514f8&embed=%7B%22ust%22%3Atrue%2C%22hv%22%3A%22CopyEmbedCode%22%7D" allowfullscreen></iframe>
@@ -85,7 +79,6 @@
         <iframe src="https://www.youtube.com/embed/5AzxMjt1sAE" allowfullscreen></iframe>
       </div>
     </div>
-
   </div>
   <div class="swiper-pagination"></div>
 </div>
@@ -97,7 +90,7 @@
     grabCursor: true,
     centeredSlides: true,
     slidesPerView: "auto",
-    loop: true,
+    loop: false, // ปิด Loop เพื่อแก้บัค iframe SharePoint ค้าง
     coverflowEffect: {
       rotate: 0,
       stretch: 0,
@@ -105,10 +98,7 @@
       modifier: 1,
       slideShadows: false,
     },
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
+    pagination: { el: ".swiper-pagination", clickable: true },
   });
 </script>
 
