@@ -3,48 +3,66 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>คลังวิดีโอ - Compact Version</title>
+<title>VDO Slider - Premium Card</title>
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;800&family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
 <style>
-  :root { 
-    --ci-green: #007947; 
-    --ci-red: #F40000; 
-    --bg-white: #ffffff; 
-  }
+  :root { --ci-green: #007947; --ci-red: #F40000; }
 
   body {
     font-family: 'Figtree', 'Kanit', sans-serif;
-    background-color: transparent; /* ปรับเป็นโปร่งใสเพื่อให้เนียนไปกับหน้าหลัก */
-    margin: 0; padding: 20px 0;
+    background-color: transparent;
+    margin: 0; padding: 10px;
   }
 
-  .section-header { text-align: center; margin-bottom: 25px; }
-  .main-title { font-size: 24px; font-weight: 800; color: var(--ci-green); margin: 0; }
-  .title-bar { width: 45px; height: 3px; background: var(--ci-red); margin: 8px auto; border-radius: 10px; }
+  /* --- ส่วนของ Container ที่ทำให้ดูไม่โล่ง --- */
+  .video-section-card {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 30px;
+    border: 1px solid rgba(0, 121, 71, 0.1);
+    padding: 30px 10px;
+    position: relative;
+    overflow: hidden;
+  }
 
-  /* --- Swiper Container (ลดขนาดลง) --- */
-  .swiper { width: 100%; padding-top: 20px; padding-bottom: 50px; }
+  /* รัศมีเรืองแสงด้านหลัง */
+  .bg-glow {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(0, 121, 71, 0.08) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    z-index: 0; pointer-events: none;
+  }
+
+  .section-header { text-align: center; margin-bottom: 25px; position: relative; z-index: 1; }
+  .main-title { font-size: 24px; font-weight: 800; color: var(--ci-green); margin: 0; }
+  /* เพิ่ม Subtitle ลดความโล่ง */
+  .sub-title { font-size: 14px; color: #64748b; margin-top: 5px; font-weight: 400; }
+  .title-bar { width: 40px; height: 3px; background: var(--ci-red); margin: 10px auto; border-radius: 10px; }
+
+  .swiper { width: 100%; padding-top: 10px; padding-bottom: 40px; z-index: 1; }
 
   .swiper-slide {
     background: #000;
-    width: 55%; /* ลดขนาดความกว้างสไลด์ลงเพื่อให้ดู Compact */
+    width: 60%;
     aspect-ratio: 16/9;
-    border-radius: 18px; /* ลดความโค้งมนเล็กน้อยให้เข้ากับขนาดที่เล็กลง */
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     transition: all 0.5s ease;
-    opacity: 0.15; 
-    transform: scale(0.8);
+    opacity: 0.1; 
+    transform: scale(0.85);
     pointer-events: none;
   }
 
-  /* สไลด์ที่อยู่ตรงกลาง */
   .swiper-slide-active {
     opacity: 1;
     transform: scale(1);
-    box-shadow: 0 15px 35px -10px rgba(0, 121, 71, 0.2);
+    box-shadow: 0 20px 40px -10px rgba(0, 121, 71, 0.25);
     z-index: 10;
     pointer-events: auto;
   }
@@ -54,37 +72,42 @@
 
   .swiper-pagination-bullet-active { background: var(--ci-green); width: 20px; border-radius: 10px; }
 
-  @media (max-width: 768px) { .swiper-slide { width: 80%; } }
+  @media (max-width: 768px) { .swiper-slide { width: 85%; } }
 </style>
 </head>
 <body>
 
-<div class="section-header">
-  <h1 class="main-title">วิดีโอแนะนำ</h1>
-  <div class="title-bar"></div>
-</div>
-
-<div class="swiper mySwiper">
-  <div class="swiper-wrapper">
-    <div class="swiper-slide">
-      <div class="video-container">
-        <iframe src="https://haadthipo365.sharepoint.com/sites/RMCGConnect/_layouts/15/embed.aspx?UniqueId=aae2c619-9856-4b5f-aae7-c6dbabf514f8&embed=%7B%22ust%22%3Atrue%2C%22hv%22%3A%22CopyEmbedCode%22%7D" allowfullscreen></iframe>
-      </div>
-    </div>
-
-    <div class="swiper-slide">
-      <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/TF7Xgk_2wWM" allowfullscreen></iframe>
-      </div>
-    </div>
-
-    <div class="swiper-slide">
-      <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/5AzxMjt1sAE" allowfullscreen></iframe>
-      </div>
-    </div>
+<div class="video-section-card">
+  <div class="bg-glow"></div>
+  
+  <div class="section-header">
+    <h1 class="main-title">วิดีโอแนะนำ</h1>
+    <p class="sub-title">เรียนรู้เรื่อง RM & CG ผ่านสื่อวิดีโอเข้าใจง่าย</p>
+    <div class="title-bar"></div>
   </div>
-  <div class="swiper-pagination"></div>
+
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <div class="video-container">
+          <iframe src="https://haadthipo365.sharepoint.com/sites/RMCGConnect/_layouts/15/embed.aspx?UniqueId=aae2c619-9856-4b5f-aae7-c6dbabf514f8&embed=%7B%22ust%22%3Atrue%2C%22hv%22%3A%22CopyEmbedCode%22%7D" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <div class="swiper-slide">
+        <div class="video-container">
+          <iframe src="https://www.youtube.com/embed/TF7Xgk_2wWM" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <div class="swiper-slide">
+        <div class="video-container">
+          <iframe src="https://www.youtube.com/embed/5AzxMjt1sAE" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -94,7 +117,7 @@
     grabCursor: true,
     centeredSlides: true,
     slidesPerView: "auto",
-    loop: false, // ปิด Loop เพื่อความเสถียรของ SharePoint
+    loop: false,
     coverflowEffect: {
       rotate: 0,
       stretch: 0,
