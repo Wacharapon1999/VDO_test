@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>คลังวิดีโอ - Cinema Slider</title>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;800&family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+<style>
+  :root {
+    --ci-green: #007947; --ci-red: #F40000;
+    --bg-white: #ffffff; --text-dark: #1e293b;
+  }
+
+  body {
+    font-family: 'Figtree', 'Kanit', sans-serif;
+    background-color: var(--bg-white);
+    margin: 0; padding: 40px 0;
+  }
+
+  .section-header { text-align: center; margin-bottom: 40px; }
+  .main-title { font-size: 32px; font-weight: 800; color: var(--ci-green); margin: 0; }
+  .title-bar { width: 60px; height: 4px; background: var(--ci-red); margin: 12px auto; border-radius: 10px; }
+
+  /* --- Swiper Styles (Center Focused) --- */
+  .swiper { width: 100%; padding-top: 50px; padding-bottom: 50px; }
+
+  .swiper-slide {
+    background-position: center; background-size: cover;
+    width: 60%; /* ขนาดวิดีโอหลัก */
+    aspect-ratio: 16/9;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.5s ease;
+    opacity: 0.4; /* ตัวข้างๆ ให้จางลง */
+    transform: scale(0.85); /* ตัวข้างๆ ให้เล็กลง */
+  }
+
+  /* ตัวที่อยู่ตรงกลางให้ชัดและใหญ่ขึ้น */
+  .swiper-slide-active {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 25px 50px -12px rgba(0, 121, 71, 0.25);
+  }
+
+  .video-container { width: 100%; height: 100%; position: relative; background: #000; }
+  .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+  /* Pagination สไตล์พรีเมียม */
+  .swiper-pagination-bullet { background: var(--ci-green); opacity: 0.2; }
+  .swiper-pagination-bullet-active { background: var(--ci-green); opacity: 1; width: 30px; border-radius: 10px; transition: 0.3s; }
+
+  @media (max-width: 768px) { .swiper-slide { width: 85%; } }
+</style>
+</head>
+<body>
+
+<div class="section-header">
+  <h1 class="main-title">คลังวิดีโอ</h1>
+  <div class="title-bar"></div>
+</div>
+
+<div class="swiper mySwiper">
+  <div class="swiper-wrapper">
+    
+    <div class="swiper-slide">
+      <div class="video-container">
+        <iframe src="https://haadthipo365.sharepoint.com/sites/RMCGConnect/_layouts/15/embed.aspx?UniqueId=aae2c619-9856-4b5f-aae7-c6dbabf514f8&embed=%7B%22ust%22%3Atrue%2C%22hv%22%3A%22CopyEmbedCode%22%7D" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div class="swiper-slide">
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div class="swiper-slide">
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/f9e_8p4fL7c" allowfullscreen></iframe>
+      </div>
+    </div>
+
+  </div>
+  <div class="swiper-pagination"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  var swiper = new Swiper(".mySwiper", {
+    effect: "coverflow",
+    grabCursor: true,
+    centeredSlides: true,
+    slidesPerView: "auto",
+    loop: true, /* ให้เลื่อนวนลูปได้ */
+    coverflowEffect: {
+      rotate: 0,
+      stretch: 0,
+      depth: 100,
+      modifier: 2,
+      slideShadows: false,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+  });
+</script>
+
+</body>
+</html>
